@@ -19,12 +19,12 @@ for x in range(10):
     file = pathlib.Path('input/' + filename)
     if (file.exists()):
 
-        #Read each file
+        #Reading each file
         print("Reading " + filename)
         f = open('input/' + filename, 'r', errors="ignore")
         contents = f.read()   
         
-        #Remove html tags
+        #Removing html tags
         soup=BeautifulSoup(contents,'html.parser')
         addtags=soup.find_all("address")
         output1=""
@@ -55,22 +55,16 @@ for x in range(10):
             for i in re.finditer(pincode,output2):
                 temp=temp+(output2[(i.start()-200):(i.start()+20)]).strip()
             output1 = temp
-               
-         
-       
-        #Your code begins  ###############################
+                            
         
-        
-        #Your code ends  #################################              
-        
-        #Write the output variable contents to output/ folder.
+        #Writing the output variable contents to output/ folder.
         print ("Writing reduced " + filename)
         fw = open('output/' + filename, "w")
         fw.write(output1)
         fw.close()
         f.close()
         
-        #Calculate space savings
+        #Calculating space savings
         space_input = space_input + len(contents)
         space_output = space_output + len(output1)
  
